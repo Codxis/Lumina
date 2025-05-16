@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LUMINA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Audiowide', sans-serif;
+      background: linear-gradient(to bottom, #05052b, #090979, #00c3ff);
+      color: white;
+    }
+
+    header {
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      color: #00ffc8;
+      letter-spacing: 4px;
+    }
+
+    nav a {
+      margin-left: 20px;
+      color: #ccc;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #00ffe0;
+      text-shadow: 0 0 10px #00ffe0;
+    }
+
+    .product-section {
+      padding: 40px;
+      text-align: center;
+    }
+
+    .product-section h2 {
+      font-size: 3rem;
+      color: #00fff2;
+      text-shadow: 0 0 15px #00fff2;
+    }
+
+    .product-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 40px;
+    }
+
+    .product-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      width: 280px;
+      padding: 20px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px #00fff2;
+      transition: 0.3s;
+    }
+
+    .product-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 40px #00ffe7, 0 0 20px #ff2ec0;
+    }
+
+    .product-card img {
+      width: 100%;
+      border-radius: 15px;
+      margin-bottom: 15px;
+    }
+
+    .product-card h3 {
+      font-size: 1.2rem;
+      color: #ffffff;
+    }
+
+    .product-card p {
+      font-size: 0.9rem;
+      color: #ccc;
+      margin: 10px 0;
+    }
+
+    .buy-button {
+      padding: 10px 20px;
+      border: 2px solid #00ffc8;
+      background: transparent;
+      color: #00ffc8;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .buy-button:hover {
+      background: #00ffc8;
+      color: #000;
+      box-shadow: 0 0 10px #00ffe7;
+    }
+
+    .gallery-title {
+      text-align: center;
+      padding: 50px 20px 20px;
+    }
+
+    .gallery-title h2 {
+      font-size: 3rem;
+      color: #00fff2;
+      text-shadow: 0 0 15px #00fff2;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      padding: 40px;
+    }
+
+    .gallery-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      width: 280px;
+      padding: 20px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px #00fff2;
+      transition: 0.3s;
+    }
+
+    .gallery-card img {
+      width: 100%;
+      border-radius: 15px;
+      margin-bottom: 15px;
+    }
+
+    iframe {
+      display: block;
+      margin: 40px auto;
+      width: 80%;
+      height: 500px;
+      border: none;
+    }
+    .btn-group {
+      margin-top: 30px;
+      text-align: center;
+    }
+    .btn {
+      padding: 12px 30px;
+      margin: 0 10px;
+      font-size: 1rem;
+      border: 2px solid #00ffcc;
+      background: transparent;
+      color: #00ffcc;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #00ffcc;
+      color: #000;
+      box-shadow: 0 0 20px #00ffe7;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #aaa;
+      background: #010118;
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop hidden>
+    <source src="Turbo.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <header>
+    <h1>LUMINA</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#">Gallery</a>
+      <a href="#">Cart</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <section class="product-section">
+    <h2>Retro-Urban Collection</h2>
+    <p>Choose your style. Glow with confidence.</p>
+    <div class="product-cards">
+      <div class="product-card">
+        <img src="hoodie1.jpg" alt="Hoodie 1">
+        <h3>URBANIZE - Sky Blue</h3>
+        <p>Glow-in-the-dark highlights with cool sky tones.</p>
+        <button class="buy-button">Buy Now</button>
+      </div>
+      <div class="product-card">
+        <img src="hoodie2.jpg" alt="Hoodie 2">
+        <h3>URBANIZE - Cyber Pink</h3>
+        <p>Perfect for night rides & synthwave events.</p>
+        <button class="buy-button">Buy Now</button>
+      </div>
+      <div class="product-card">
+        <img src="hoodie3.jpg" alt="Hoodie 3">
+        <h3>URBANIZE - Midnight Pulse</h3>
+        <p>Dark base with vibrant blue neon edges.</p>
+        <button class="buy-button">Buy Now</button>
+      </div>
+      <div class="product-card">
+        <img src="hoodie4.jpg" alt="Hoodie 4">
+        <h3>URBANIZE - Lime Matrix</h3>
+        <p>Green-glow accent perfect for bold personalities.</p>
+        <button class="buy-button">Buy Now</button>
+      </div>
+      <div class="product-card">
+        <img src="hoodie5.jpg" alt="Hoodie 5">
+        <h3>URBANIZE - Electric Violet</h3>
+        <p>Vibrant violet neon that shines under blacklight.</p>
+        <button class="buy-button">Buy Now</button>
+      </div>
+      <div class="product-card">
+        <img src="hoodie6.jpg" alt="Hoodie 6">
+        <h3>URBANIZE - Radiant Red</h3>
+        <p>Bold red highlights for the night-time adventurer.</p>
+        <button class="buy-button">Buy Now</button>
+      </div>
+      <div class="product-card">
+        <img src="hoodie7.jpg" alt="Hoodie 7">
+        <h3>URBANIZE - Midnight Black</h3>
+        <p>Classic black hoodie with neon blue accents.</p>
+        <button class="buy-button">Buy Now</button>
+      </div>
+      <div class="product-card">
+        <img src="hoodie8.jpg" alt="Hoodie 8">
+        <h3>URBANIZE - Electric Green</h3>
+        <p>Neon green highlights for a bold look.</p>
+        <button class="buy-button">Buy Now</button>
+      </div>
+      <div class="product-card">
+        <img src="hoodie9.jpg" alt="Hoodie 9">
+        <h3>URBANIZE - Turbo Yellow</h3>
+        <p>Vibrant yellow with glowing accents.</p>
+        <button class="buy-button">Buy Now</button>
+      </div>
+      <div class="product-card">
+        <img src="hoodie10.jpg" alt="Hoodie 10">
+        <h3>URBANIZE - Stealth Black</h3>
+        <p>Subtle yet sleek with minimal neon touch.</p>
+        <button class="buy-button">Buy Now</button>
+      </div>
+    </div>
+  </section>
+
+
+  <div class="gallery-title">
+    <h2>Product Gallery</h2>
+    <p>View sample photos of our glowing products in action!</p>
+  </div>
+
+  <section class="gallery">
+    <div class="gallery-card">
+      <img src="sample1.jpg" alt="Sample 1">
+    </div>
+    <div class="gallery-card">
+      <img src="sample2.jpg" alt="Sample 2">
+    </div>
+    <div class="gallery-card">
+      <img src="sample3.jpg" alt="Sample 3">
+    </div>
+    <div class="gallery-card">
+      <img src="sample4.jpg" alt="Sample 4">
+    </div>
+    <div class="gallery-card">
+      <img src="sample5.jpg" alt="Sample 5">
+    </div>
+    </div>
+    <div class="gallery-card">
+      <img src="sample6.jpg" alt="Sample 6">
+    </div>
+  </section>
+
+<section>
+      <div class="btn-group">
+        <a href="index.html" class="btn">Home</a>
+      </div>
+</section>
+  <iframe src="https://www.youtube.com/embed/Y-mjyp5V8KU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+  <footer>
+    Rafael Alexis P. Recinto<br>
+    &copy; 2025 Lumina — All Rights Reserved.
+  </footer>
+</body>
+</html>
