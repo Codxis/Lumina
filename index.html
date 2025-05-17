@@ -2,44 +2,101 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>LUMINA</title>
-  <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUMINA | Retro-Urban Fashion</title>
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
+    :root {
+      --primary: #00ffcc;
+      --secondary: #ff2e63;
+      --accent: #00d4ff;
+      --dark-bg: #010118;
+      --text-light: #ffffff;
+      --text-muted: #cccccc;
+    }
+    
     body {
       margin: 0;
       font-family: 'Audiowide', sans-serif;
-      background: linear-gradient(180deg, #020024, #090979, #00d4ff);
-      color: white;
+      background: linear-gradient(180deg, #020024 0%, #090979 50%, #00d4ff 100%);
+      background-attachment: fixed;
+      color: var(--text-light);
       overflow-x: hidden;
+      line-height: 1.6;
+      min-height: 100vh;
     }
+    
     header {
-      position: absolute;
-      top: 30px;
+      position: fixed;
+      top: 0;
       width: 100%;
       display: flex;
-      justify-content: space-evenly;
-      padding: 0 30px;
-      z-index: 10;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 5%;
+      z-index: 1000;
+      background: rgba(1, 1, 24, 0.8);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      box-sizing: border-box;
     }
+    
+    header.scrolled {
+      padding: 15px 5%;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    }
+    
     header h1 {
       font-size: 2rem;
       letter-spacing: 5px;
-      color: #00ffcc;
+      color: var(--primary);
+      margin: 0;
     }
+    
     nav {
       display: flex;
-      gap: 20px;
+      gap: 30px;
     }
+    
     nav a {
-      color: #ffffffcc;
+      color: rgba(255, 255, 255, 0.8);
       text-decoration: none;
       font-size: 1rem;
-      transition: 0.3s;
+      transition: all 0.3s;
+      position: relative;
+      font-weight: 500;
+      white-space: nowrap;
     }
+    
     nav a:hover {
-      color: #00ffd5;
-      text-shadow: 0 0 10px #00ffd5;
+      color: var(--primary);
     }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: var(--primary);
+      transition: width 0.3s;
+    }
+    
+    nav a:hover::after {
+      width: 100%;
+    }
+    
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    
     .hero {
       display: flex;
       flex-direction: column;
@@ -49,173 +106,524 @@
       text-align: center;
       background: url('neon-model.jpg') no-repeat center center/cover;
       position: relative;
+      padding-top: 80px;
+      box-sizing: border-box;
     }
+    
     .overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.5);
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7));
       backdrop-filter: blur(3px);
     }
+    
     .hero-content {
       position: relative;
       z-index: 2;
       color: white;
+      max-width: 800px;
+      padding: 0 20px;
+      width: 100%;
+      box-sizing: border-box;
     }
+    
     .hero h2 {
-      font-size: 4rem;
-      margin-bottom: 10px;
-      text-shadow: 0 0 15px #00ffe7;
+      font-size: clamp(2.2rem, 8vw, 4.5rem);
+      margin-bottom: 15px;
+      text-shadow: 0 0 15px var(--primary);
+      animation: glow 2s infinite alternate;
     }
+    
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px var(--primary);
+      }
+      to {
+        text-shadow: 0 0 20px var(--primary), 0 0 30px var(--secondary);
+      }
+    }
+    
     .subtitle {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      margin-bottom: 30px;
       color: #aaffee;
-      text-shadow: 0 0 10px #00ffe7;
+      text-shadow: 0 0 10px var(--primary);
+      font-weight: 300;
     }
+    
     .btn-group {
-      margin-top: 30px;
+      margin-top: 40px;
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
+    
     .btn {
-      padding: 12px 30px;
-      margin: 0 10px;
+      padding: 14px 35px;
       font-size: 1rem;
-      border: 2px solid #00ffcc;
+      border: 2px solid var(--primary);
       background: transparent;
-      color: #00ffcc;
+      color: var(--primary);
       border-radius: 50px;
       cursor: pointer;
-      transition: 0.3s;
+      transition: all 0.3s;
+      font-family: 'Audiowide', sans-serif;
+      position: relative;
+      overflow: hidden;
     }
+    
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 255, 204, 0.2), transparent);
+      transition: 0.5s;
+    }
+    
     .btn:hover {
-      background: #00ffcc;
+      background: var(--primary);
       color: #000;
-      box-shadow: 0 0 20px #00ffe7;
+      box-shadow: 0 0 20px var(--primary);
     }
-    .cards, .gallery {
+    
+    .btn:hover::before {
+      left: 100%;
+    }
+    
+    .btn-primary {
+      background: var(--primary);
+      color: #000;
+    }
+    
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--primary);
+      box-shadow: 0 0 20px var(--primary);
+    }
+    
+    section {
+      padding: 100px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    
+    .section-title {
+      text-align: center;
+      font-size: clamp(2rem, 6vw, 3rem);
+      margin-bottom: 50px;
+      color: var(--primary);
+      text-shadow: 0 0 15px var(--primary);
+      position: relative;
+      padding: 0 20px;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: var(--primary);
+      box-shadow: 0 0 10px var(--primary);
+    }
+    
+    .cards, .gallery, .product-cards {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 30px;
-      padding: 80px 50px;
+      padding: 0 50px;
       background: linear-gradient(to bottom, #090979, #0f0f3d);
+      width: 100%;
+      box-sizing: border-box;
     }
+    
     .card {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 20px;
-      padding: 20px;
+      padding: 25px;
       width: 280px;
+      max-width: 100%;
       backdrop-filter: blur(10px);
       color: #eee;
-      box-shadow: 0 0 20px #00ffd5;
-      transition: 0.3s;
+      box-shadow: 0 0 20px var(--primary);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       text-align: center;
+      box-sizing: border-box;
     }
+    
     .card img {
       width: 100%;
       border-radius: 15px;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
+      transition: transform 0.3s;
     }
+    
     .card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 0 30px #ff2e63, 0 0 60px #00d4ff;
+      box-shadow: 0 0 30px var(--secondary), 0 0 60px var(--accent);
     }
+    
+    .card:hover img {
+      transform: scale(1.03);
+    }
+    
+    .features-section {
+      padding: 80px 0;
+      text-align: center;
+      background: #0f0f3d;
+      position: relative;
+      width: 100%;
+    }
+    
+    .features-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+    }
+    
     ul.features {
-      list-style-type: square;
-      padding-left: 0;
+      list-style-type: none;
+      padding: 0;
+      max-width: 800px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 0 20px;
+    }
+    
+    ul.features li {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      text-align: left;
+    }
+    
+    ul.features li::before {
+      content: '✦';
+      color: var(--primary);
+      margin-right: 10px;
+    }
+    
+    .product-section {
+      padding: 80px 0;
       text-align: center;
-      list-style-position: inside;
+      background: linear-gradient(to bottom, #0f0f3d, #020024);
+      width: 100%;
     }
-        .product-section {
-      padding: 40px;
-      text-align: center;
-    }
-
-    .product-section h2 {
-      font-size: 3rem;
-      color: #00fff2;
-      text-shadow: 0 0 15px #00fff2;
-    }
-
-    .product-cards {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-      padding: 40px;
-    }
-
+    
     .product-card {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 20px;
       width: 280px;
-      padding: 20px;
+      max-width: 100%;
+      padding: 25px;
       text-align: center;
       backdrop-filter: blur(10px);
-      box-shadow: 0 0 20px #00fff2;
-      transition: 0.3s;
+      box-shadow: 0 0 20px var(--primary);
+      transition: all 0.4s;
+      position: relative;
+      box-sizing: border-box;
     }
-
+    
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+    
     .product-card:hover {
-      transform: scale(1.03);
-      box-shadow: 0 0 40px #00ffe7, 0 0 20px #ff2ec0;
+      transform: scale(1.05);
+      box-shadow: 0 0 40px var(--primary), 0 0 20px var(--secondary);
     }
-
+    
     .product-card img {
       width: 100%;
       border-radius: 15px;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
-
+    
     .product-card h3 {
+      font-size: 1.3rem;
+      margin: 15px 0;
+    }
+    
+    .product-card .price {
       font-size: 1.2rem;
-      color: #ffffff;
+      color: var(--primary);
+      margin: 15px 0;
+      font-weight: bold;
     }
-
-    .product-card p {
-      font-size: 0.9rem;
-      color: #ccc;
-      margin: 10px 0;
-    }
+    
     .buy-button {
-      padding: 10px 20px;
-      border: 2px solid #00ffc8;
+      padding: 12px 25px;
+      border: 2px solid var(--primary);
       background: transparent;
-      color: #00ffc8;
+      color: var(--primary);
       border-radius: 30px;
-      font-size: 0.9rem;
+      font-size: 1rem;
       cursor: pointer;
-      transition: 0.3s;
+      transition: all 0.3s;
+      font-family: 'Audiowide', sans-serif;
     }
-
+    
     .buy-button:hover {
-      background: #00ffc8;
+      background: var(--primary);
       color: #000;
-      box-shadow: 0 0 10px #00ffe7;
+      box-shadow: 0 0 15px var(--primary);
+      transform: translateY(-3px);
     }
+    
+    .gallery {
+      padding: 80px 20px;
+      background: linear-gradient(to bottom, #020024, #090979);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      justify-items: center;
+    }
+    
     .gallery img {
-      border: 4px solid #00ffe7;
+      border: 4px solid var(--primary);
       border-radius: 10px;
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: all 0.4s;
+      object-fit: cover;
+      height: 250px;
+      width: 100%;
+      max-width: 300px;
     }
+    
     .gallery img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #ff00cc, 0 0 40px #00ffe7;
+      transform: scale(1.08);
+      box-shadow: 0 0 20px var(--secondary), 0 0 40px var(--primary);
+      border-color: var(--secondary);
     }
+    
+    .video-container {
+      padding: 80px 20px;
+      background: #010118;
+      text-align: center;
+      width: 100%;
+    }
+    
     iframe {
       display: block;
-      margin: 50px auto;
-      max-width: 100%;
+      margin: 0 auto;
+      max-width: 90%;
       width: 800px;
       height: 450px;
+      border: 5px solid var(--primary);
+      border-radius: 10px;
+      box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
     }
+    
     footer {
-      padding: 30px;
+      padding: 50px 0 20px;
       text-align: center;
-      font-size: 0.9em;
-      background: #010118;
-      color: #aaa;
+      background: var(--dark-bg);
+      color: var(--text-muted);
+      font-family: 'Montserrat', sans-serif;
+      width: 100%;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      padding: 0 20px;
+      text-align: left;
+    }
+    
+    .footer-column h3 {
+      color: var(--primary);
+      margin-bottom: 20px;
+      font-size: 1.2rem;
+    }
+    
+    .footer-column p, .footer-column a {
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      display: block;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-column a:hover {
+      color: var(--primary);
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .social-links a {
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      transition: color 0.3s, transform 0.3s;
+    }
+    
+    .social-links a:hover {
+      color: var(--primary);
+      transform: translateY(-5px);
+    }
+    
+    .copyright {
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .scroll-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--primary);
+      color: #000;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+      z-index: 999;
+      box-shadow: 0 0 10px var(--primary);
+    }
+    
+    .scroll-top.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .scroll-top:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px var(--primary);
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 1s ease forwards;
+    }
+    
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+    
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .hero h2 {
+        font-size: 3.5rem;
+      }
+      
+      .section-title {
+        font-size: 2.5rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        padding: 15px 5%;
+      }
+      
+      nav {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 80%;
+        height: calc(100vh - 80px);
+        background: rgba(1, 1, 24, 0.95);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        transition: all 0.5s ease;
+        backdrop-filter: blur(10px);
+      }
+      
+      nav.active {
+        left: 0;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .hero h2 {
+        font-size: 2.8rem;
+      }
+      
+      .subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .btn-group {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn {
+        width: 80%;
+      }
+      
+      .cards, .gallery, .product-cards {
+        padding: 0 20px;
+      }
+      
+      iframe {
+        height: 300px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .hero h2 {
+        font-size: 2.2rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      nav {
+        gap: 20px;
+      }
+      
+      nav a {
+        font-size: 1.2rem;
+      }
     }
   </style>
 </head>
@@ -224,126 +632,241 @@
     <source src="Play.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
-  <header>
+  
+  <header id="header">
     <h1>LUMINA</h1>
-    <nav>
+    <button class="mobile-menu-btn" id="menuBtn">
+      <i class="fas fa-bars"></i>
+    </button>
+    <nav id="navMenu">
       <a href="#">HOME</a>
-      <a href="#">ABOUT</a>
-      <a href="#">PRODUCTS</a>
-      <a href="#">CONTACT</a>
+      <a href="#products">PRODUCTS</a>
+      <a href="#gallery">GALLERY</a>
+      <a href="#contact">CONTACT</a>
     </nav>
   </header>
 
   <section class="hero">
     <div class="overlay"></div>
     <div class="hero-content">
-      <h2>URBANIZE</h2>
-      <div class="subtitle">Enter the world of retro-urban avant garde lifestyle.</div>
+      <h2 class="fade-in">URBANIZE</h2>
+      <div class="subtitle fade-in delay-1">Enter the world of retro-urban avant garde lifestyle.</div>
       <div class="btn-group">
-        <button class="btn" onclick="window.scrollBy({top: 700, behavior: 'smooth'})">Discover</button>
+        <button class="btn btn-primary fade-in delay-2" onclick="window.location.href='#products'">Discover</button>
+        <button class="btn fade-in delay-3" onclick="window.location.href='#contact'">Contact Us</button>
       </div>
     </div>
   </section>
 
   <section class="cards" id="products">
-    <div class="card"><img src="hoodie1.jpg" alt="Hoodie 1"><h3>Urban Nightfall</h3><p>Monochrome hoodie with a sleek sharp retro stylized logo.</p></div>
-    <div class="card"><img src="hoodie2.jpg" alt="Hoodie 2"><h3>Vibe Layer</h3><p>Stylish retro-futuristic windbreaker jacket with bold colors meets techwear edge.</p></div>
-    <div class="card"><img src="hoodie3.jpg" alt="Hoodie 3"><h3>Neon Pulse</h3><p>Urban-retro hoodie built for cold environments, and nightlife strolls.</p></div>
+    <div class="card fade-in">
+      <img src="hoodie1.jpg" alt="Hoodie 1">
+      <h3>Urban Nightfall</h3>
+      <p>Monochrome hoodie with a sleek sharp retro stylized logo.</p>
+      <span class="price">$89.99</span>
+      <button class="buy-button">Add to Cart</button>
+    </div>
+    <div class="card fade-in delay-1">
+      <img src="hoodie2.jpg" alt="Hoodie 2">
+      <h3>Vibe Layer</h3>
+      <p>Stylish retro-futuristic windbreaker jacket with bold colors meets techwear edge.</p>
+      <span class="price">$109.99</span>
+      <button class="buy-button">Add to Cart</button>
+    </div>
+    <div class="card fade-in delay-2">
+      <img src="hoodie3.jpg" alt="Hoodie 3">
+      <h3>Neon Pulse</h3>
+      <p>Urban-retro hoodie built for cold environments, and nightlife strolls.</p>
+      <span class="price">$94.99</span>
+      <button class="buy-button">Add to Cart</button>
+    </div>
   </section>
 
-  <section style="padding: 50px; text-align: center; background: #0f0f3d;">
-    <h2>Key Features</h2>
+  <section class="features-section">
+    <h2 class="section-title">Key Features</h2>
     <ul class="features">
       <li>High-quality fabric with futuristic aesthetics</li>
       <li>Comfortable fit for everyday streetwear</li>
-      <li>Limited edition drops</li>
-      <li>Eco-friendly production</li>
-      <li>Designed for self-expression</li>
+      <li>Limited edition drops with unique serial numbers</li>
+      <li>Eco-friendly production using sustainable materials</li>
+      <li>Designed for self-expression and individuality</li>
+      <li>UV-reactive prints for night-time visibility</li>
     </ul>
   </section>
 
   <section class="product-section">
-    <h2>Retro-Hoodie Collection</h2>
-    <p>Choose your style. Urbanized your vibes.</p>
+    <h2 class="section-title">Retro-Hoodie Collection</h2>
+    <p>Choose your style. Urbanize your vibes.</p>
     <div class="product-cards">
-      <div class="product-card">
+      <div class="product-card fade-in">
         <img src="hoodie4.jpg" alt="Hoodie 4">
         <h3>URBANIZE - Lime Matrix</h3>
         <p>Green-glow accent perfect for bold personalities.</p>
+        <span class="price">$79.99</span>
         <button class="buy-button">Buy Now</button>
       </div>
-      <div class="product-card">
+      <div class="product-card fade-in delay-1">
         <img src="hoodie5.jpg" alt="Hoodie 5">
         <h3>URBANIZE - Electric Violet</h3>
         <p>Vibrant violet neon that shines under blacklight.</p>
+        <span class="price">$84.99</span>
         <button class="buy-button">Buy Now</button>
       </div>
-      <div class="product-card">
+      <div class="product-card fade-in delay-2">
         <img src="hoodie6.jpg" alt="Hoodie 6">
         <h3>URBANIZE - Radiant Red</h3>
         <p>Bold red highlights for the night-time adventurer.</p>
+        <span class="price">$79.99</span>
         <button class="buy-button">Buy Now</button>
       </div>
-      <div class="product-card">
+      <div class="product-card fade-in">
         <img src="hoodie7.jpg" alt="Hoodie 7">
         <h3>URBANIZE - Midnight Black</h3>
         <p>Classic black hoodie with neon blue accents.</p>
+        <span class="price">$74.99</span>
         <button class="buy-button">Buy Now</button>
       </div>
-      <div class="product-card">
+      <div class="product-card fade-in delay-1">
         <img src="hoodie8.jpg" alt="Hoodie 8">
         <h3>URBANIZE - Electric Green</h3>
         <p>Neon green highlights for a bold look.</p>
+        <span class="price">$79.99</span>
         <button class="buy-button">Buy Now</button>
       </div>
-      <div class="product-card">
+      <div class="product-card fade-in delay-2">
         <img src="hoodie9.jpg" alt="Hoodie 9">
         <h3>URBANIZE - Turbo Yellow</h3>
         <p>Vibrant yellow with glowing accents.</p>
+        <span class="price">$79.99</span>
         <button class="buy-button">Buy Now</button>
       </div>
     </div>
   </section>
  
-  <section class="gallery">
-    <img src="sample1.jpg" alt="Gallery 1" width="300">
-    <img src="sample2.jpg" alt="Gallery 2" width="300">
-    <img src="sample3.jpg" alt="Gallery 3" width="300">
-    <img src="sample4.jpg" alt="Gallery 4" width="300">
-    <img src="sample5.jpg" alt="Gallery 5" width="300">
-    <img src="sample6.jpg" alt="Gallery 6" width="300">
+  <section class="gallery" id="gallery">
+    <h2 class="section-title">Style Gallery</h2>
+    <img src="sample1.jpg" alt="Gallery 1">
+    <img src="sample2.jpg" alt="Gallery 2">
+    <img src="sample3.jpg" alt="Gallery 3">
+    <img src="sample4.jpg" alt="Gallery 4">
+    <img src="sample5.jpg" alt="Gallery 5">
+    <img src="sample6.jpg" alt="Gallery 6">
   </section>
 
-  <section class="cards">
-    <h2>Retro-Store <br> Selection <br> -> </h2>
-    <div class="card">
-      <a href="store.html" style="text-decoration: none; color: inherit;">
-        <img src="hoodie2.jpg" alt="Retro Hoodie">
-        <h3>Retro Hoodie</h3>
-        <p>Bold and comfy retro hoodie that turns heads.</p>
-      </a>
-    </div>
-    <div class="card">
-      <a href="store.html" style="text-decoration: none; color: inherit;">
-        <img src="hat1.jpg" alt="Lumina Headwear">
-        <h3>Lumina Headwear</h3>
-        <p>Retro futuristic cap for your city fits.</p>
-      </a>
-    </div>
-    <div class="card">
-      <a href="store.html" style="text-decoration: none; color: inherit;">
-        <img src="bag1.jpg" alt="Retro Hoodie">
-        <h3>Urban Utility Bag</h3>
-        <p>Multi-pocketed sling bag for your daily grind.</p>
-      </a>
-    </div>
+  <section class="video-container">
+    <h2 class="section-title">The Lumina Experience</h2>
+    <iframe src="https://www.youtube.com/embed/Y-mjyp5V8KU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </section>
 
-  <iframe src="https://www.youtube.com/embed/Y-mjyp5V8KU" frameborder="0" allowfullscreen></iframe>
-
-  <footer>
-    Rafael Alexis P. Recinto<br>
-    &copy; 2025 Lumina — All Rights Reserved.
+  <footer id="contact">
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>About Lumina</h3>
+        <p>Born from the neon-lit streets of the urban landscape, Lumina brings retro-futuristic fashion to the modern era.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <a href="#">Home</a>
+        <a href="#products">Products</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#">About Us</a>
+        <a href="#">FAQ</a>
+      </div>
+      <div class="footer-column">
+        <h3>Contact Us</h3>
+        <p><i class="fas fa-map-marker-alt"></i> 123 Neon Street, Cyber District</p>
+        <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+        <p><i class="fas fa-envelope"></i> info@luminastyle.com</p>
+      </div>
+    </div>
+    <div class="copyright">
+      Rafael Alexis P. Recinto<br>
+      &copy; 2025 Lumina — All Rights Reserved.
+    </div>
   </footer>
+  
+  <div class="scroll-top" id="scrollTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const navMenu = document.getElementById('navMenu');
+    
+    menuBtn.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      menuBtn.innerHTML = navMenu.classList.contains('active') ? 
+        '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+    
+    // Close menu when clicking a link
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+      });
+    });
+    
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      header.classList.toggle('scrolled', window.scrollY > 50);
+      
+      // Show/hide scroll to top button
+      const scrollTop = document.getElementById('scrollTop');
+      scrollTop.classList.toggle('active', window.scrollY > 300);
+    });
+    
+    // Scroll to top
+    document.getElementById('scrollTop').addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if(targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if(targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Animation on scroll
+    const animateOnScroll = () => {
+      const elements = document.querySelectorAll('.fade-in');
+      
+      elements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.2;
+        
+        if(elementPosition < screenPosition) {
+          element.style.opacity = '1';
+          element.style.transform = 'translateY(0)';
+        }
+      });
+    };
+    
+    window.addEventListener('scroll', animateOnScroll);
+    window.addEventListener('load', animateOnScroll);
+  </script>
 </body>
 </html>
